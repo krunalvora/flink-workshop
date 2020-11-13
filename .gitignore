@@ -1,4 +1,4 @@
-.idea/
-build/
-gradlew.bat
 .gradle/
+build/
+.idea/
+gradlew.bat
