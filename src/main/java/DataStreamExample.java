@@ -1,6 +1,10 @@
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.flink.api.common.functions.FilterFunction;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+
+import javax.xml.crypto.Data;
 
 public class DataStreamExample {
 
@@ -8,11 +12,17 @@ public class DataStreamExample {
 
     final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
-    DataStream<Person> flintstones = env.fromElements(
-          new Person("Fred", 35),
-          new Person("Wilma", 35),
-          new Person("Pebbles", 2)
-    );
+    // DataStream<String> lines = env.socketTextStream("localhost", 9999);
+    // DataStream<String> lines = env.readTextFile("file:///tmp/delete");
+    // lines.print();
+
+    List<Person> people = new ArrayList<Person>();
+
+    people.add(new Person("Fred", 35));
+    people.add(new Person("Wilma", 35));
+    people.add(new Person("Pebbles", 2));
+
+    DataStream<Person> flintstones = env.fromCollection(people);
 
     DataStream<Person> adults = flintstones.filter(new FilterFunction<Person>() {
       @Override
