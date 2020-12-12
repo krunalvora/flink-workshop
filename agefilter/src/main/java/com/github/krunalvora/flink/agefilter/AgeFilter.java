@@ -1,3 +1,5 @@
+package com.github.krunalvora.flink.agefilter;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.flink.api.common.functions.FilterFunction;
@@ -6,7 +8,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 import javax.xml.crypto.Data;
 
-public class DataStreamExample {
+public class AgeFilter {
 
   public static void main(String[] args) throws Exception {
 
