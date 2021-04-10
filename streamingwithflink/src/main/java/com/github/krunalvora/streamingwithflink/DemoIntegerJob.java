@@ -11,12 +11,17 @@ public class DemoIntegerJob {
     StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
     DataStream<Integer> integerDataStream = env
-          .addSource(new IntegerSource())
+          .addSource(new IntegerSource());
+
+    // Printing original input stream
+    System.out.println(integerDataStream.print());
+
+    DataStream<Integer> outputIntDataStream = integerDataStream
           // .map(r-> r + 100);
           .map(new IncrementByHundred()); // or using a MapFunction
 
-
-    System.out.println(integerDataStream.print());
+    // Printing output stream
+    System.out.println(outputIntDataStream.print());
 
     env.execute();
   }
