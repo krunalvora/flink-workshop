@@ -31,6 +31,7 @@ public class DemoIntegerJob {
     env.execute();
   }
 
+
   public static void executeKeyedTransformations() throws Exception {
     StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
@@ -49,6 +50,7 @@ public class DemoIntegerJob {
     env.execute();
   }
 
+
   public static class IncrementByHundred implements MapFunction<Integer, Integer> {
     @Override
     public Integer map(Integer value) throws Exception {
@@ -56,16 +58,16 @@ public class DemoIntegerJob {
     }
   }
 
-  public static class DropOdd implements FilterFunction<Integer> {
 
+  public static class DropOdd implements FilterFunction<Integer> {
     @Override
     public boolean filter(Integer value) throws Exception {
       return value % 2 == 0;
     }
   }
 
-  public static class AddNeighboringIntegers implements FlatMapFunction<Integer, Integer> {
 
+  public static class AddNeighboringIntegers implements FlatMapFunction<Integer, Integer> {
     @Override
     public void flatMap(Integer value, Collector<Integer> out) throws Exception {
       out.collect(value - 1);
@@ -74,10 +76,9 @@ public class DemoIntegerJob {
     }
   }
 
-  public static void main(String[] args) throws Exception {
 
+  public static void main(String[] args) throws Exception {
     // executeBasicTransformations();
     executeKeyedTransformations();
-
   }
 }
