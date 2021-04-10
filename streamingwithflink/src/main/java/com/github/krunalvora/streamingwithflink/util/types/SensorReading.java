@@ -1,5 +1,6 @@
 package com.github.krunalvora.streamingwithflink.util.types;
 
+// POJO type
 public class SensorReading {
 
   public String id;
