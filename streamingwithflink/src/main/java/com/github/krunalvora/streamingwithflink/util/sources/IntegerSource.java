@@ -1,4 +1,4 @@
-package com.github.krunalvora.streamingwithflink.util;
+package com.github.krunalvora.streamingwithflink.util.sources;
 
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
 
@@ -12,7 +12,7 @@ public class IntegerSource implements SourceFunction<Integer> {
   @Override
   public void run(SourceContext<Integer> ctx) throws Exception {
     while (running) {
-      ctx.collect(random.nextInt(100));
+      ctx.collect(random.nextInt(100));  // Generating integers from 0 to 100
       Thread.sleep(500);
     }
   }

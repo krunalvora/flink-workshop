@@ -37,14 +37,4 @@ public class WordCountUsingPOJO {
       }
     }
   }
-
-  // Sample MapFunction
-  public static class MyMapFunction implements MapFunction<String, WordWithCount> {
-
-    @Override
-    public WordWithCount map(String value) throws Exception {
-
-      return null;
-    }
-  }
 }

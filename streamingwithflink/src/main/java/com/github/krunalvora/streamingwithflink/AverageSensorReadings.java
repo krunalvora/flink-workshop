@@ -1,8 +1,8 @@
 package com.github.krunalvora.streamingwithflink;
 
-import com.github.krunalvora.streamingwithflink.util.SensorReading;
-import com.github.krunalvora.streamingwithflink.util.SensorSource;
-import com.github.krunalvora.streamingwithflink.util.SensorTimeAssigner;
+import com.github.krunalvora.streamingwithflink.util.types.SensorReading;
+import com.github.krunalvora.streamingwithflink.util.sources.SensorSource;
+import com.github.krunalvora.streamingwithflink.util.timeassigners.SensorTimeAssigner;
 import org.apache.flink.streaming.api.TimeCharacteristic;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;

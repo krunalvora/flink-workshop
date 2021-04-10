@@ -1,5 +1,6 @@
-package com.github.krunalvora.streamingwithflink.util;
+package com.github.krunalvora.streamingwithflink.util.timeassigners;
 
+import com.github.krunalvora.streamingwithflink.util.types.SensorReading;
 import org.apache.flink.streaming.api.functions.timestamps.BoundedOutOfOrdernessTimestampExtractor;
 import org.apache.flink.streaming.api.windowing.time.Time;
 

@@ -1,4 +1,4 @@
-package com.github.krunalvora.streamingwithflink.util;
+package com.github.krunalvora.streamingwithflink.util.types;
 
 public class SensorReading {
 

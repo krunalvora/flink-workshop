@@ -1,5 +1,6 @@
-package com.github.krunalvora.streamingwithflink.util;
+package com.github.krunalvora.streamingwithflink.util.sources;
 
+import com.github.krunalvora.streamingwithflink.util.types.SensorReading;
 import org.apache.flink.streaming.api.functions.source.RichParallelSourceFunction;
 
 import java.util.Calendar;
