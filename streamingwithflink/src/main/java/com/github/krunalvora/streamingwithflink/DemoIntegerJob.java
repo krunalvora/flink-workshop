@@ -5,13 +5,14 @@ import org.apache.flink.api.common.functions.FilterFunction;
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.functions.ReduceFunction;
-import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.api.java.tuple.Tuple3;
-import org.apache.flink.streaming.api.datastream.ConnectedStreams;
+import org.apache.flink.streaming.api.collector.selector.OutputSelector;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.co.CoMapFunction;
 import org.apache.flink.util.Collector;
+
+import java.util.Iterator;
 
 
 public class DemoIntegerJob {
@@ -59,16 +60,18 @@ public class DemoIntegerJob {
     StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
     // Data source stream from elements of a list
+    DataStream<Integer> integerStreamAll = env.fromElements(1, 2, 3, 4, 5, 6, 7, 8, 9);
     DataStream<Integer> integerStreamEven = env.fromElements(2, 4, 6, 8);
     DataStream<Integer> integerStreamOdd = env.fromElements(1, 3, 5, 7, 9);
     DataStream<String> stringStreamOdd = env.fromElements("1", "3", "5", "7", "9");
 
+    // union
     // DataStream<Integer> outputStream = integerStreamOdd.union(integerStreamEven);
+
+    // connect
     DataStream<Integer> outputStream = integerStreamOdd
           .connect(stringStreamOdd)  // creates ConnectedStreams<Integer, String>
           .map(new allInts());
-
-    System.out.println(outputStream.print());
 
     env.execute();
   }
@@ -120,7 +123,6 @@ public class DemoIntegerJob {
       return Integer.parseInt(value);
     }
   }
-
 
   public static void main(String[] args) throws Exception {
     // executeBasicTransformations();
