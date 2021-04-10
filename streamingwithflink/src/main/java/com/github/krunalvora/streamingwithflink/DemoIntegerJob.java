@@ -17,8 +17,8 @@ public class DemoIntegerJob {
     System.out.println(integerDataStream.print());
 
     DataStream<Integer> outputIntDataStream = integerDataStream
-          // .map(r-> r + 100);
-          .map(new IncrementByHundred()); // or using a MapFunction
+          // .map(r-> r + 100);  // using a Lambda function
+          .map(new IncrementByHundred());  // or using a MapFunction Interface
 
     // Printing output stream
     System.out.println(outputIntDataStream.print());
