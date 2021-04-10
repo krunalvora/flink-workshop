@@ -2,3 +2,4 @@ rootProject.name = 'flink-workshop'
 
 include 'wordcount'
 include 'agefilter'
+include 'streamingwithflink'
