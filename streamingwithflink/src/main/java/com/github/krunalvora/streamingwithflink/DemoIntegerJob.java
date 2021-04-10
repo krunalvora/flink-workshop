@@ -4,6 +4,7 @@ import com.github.krunalvora.streamingwithflink.util.sources.IntegerSource;
 import org.apache.flink.api.common.functions.FilterFunction;
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.common.functions.MapFunction;
+import org.apache.flink.api.common.functions.ReduceFunction;
 import org.apache.flink.api.java.tuple.Tuple3;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
@@ -37,12 +38,13 @@ public class DemoIntegerJob {
 
     // Data source stream from elements of a list
     DataStream<Tuple3<Integer, Integer, Integer>> integerTupleStream = env.fromElements(
-          Tuple3.of(1, 1, 4), Tuple3.of(1, 2, 3), Tuple3.of(2, 1, 2), Tuple3.of(1, 3, 4));
+          Tuple3.of(1, 1, 1), Tuple3.of(1, 1, 2), Tuple3.of(2, 1, 2), Tuple3.of(1, 1, 3));
 
     DataStream<Tuple3<Integer, Integer, Integer>> outputIntDataStream = integerTupleStream
           .keyBy(0)
-          .sum(1);
+          // .sum(1);
           // .max(2);
+          .reduce(new SumReduce());
 
     // Printing output stream
     System.out.println(outputIntDataStream.print());
@@ -73,6 +75,14 @@ public class DemoIntegerJob {
       out.collect(value - 1);
       out.collect(value);
       out.collect(value + 1);
+    }
+  }
+
+  public static class SumReduce implements ReduceFunction<Tuple3<Integer, Integer, Integer>> {
+
+    @Override
+    public Tuple3<Integer, Integer, Integer> reduce(Tuple3<Integer, Integer, Integer> value1, Tuple3<Integer, Integer, Integer> value2) throws Exception {
+      return Tuple3.of(value1.f0, value1.f1 + value2.f1, value1.f2);
     }
   }
 
