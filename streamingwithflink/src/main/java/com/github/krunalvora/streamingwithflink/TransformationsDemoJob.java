@@ -11,7 +11,6 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.co.CoMapFunction;
 import org.apache.flink.util.Collector;
 
-
 public class TransformationsDemoJob {
 
   public static void executeBasicTransformations() throws Exception {

@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.apache.flink:flink-clients_2.11:1.11.0'
+    implementation 'org.apache.flink:flink-streaming-java_2.11:1.11.0'
+    implementation 'org.apache.flink:flink-metrics-prometheus_2.11:1.11.0'
+    implementation 'io.prometheus:simpleclient:0.10.0'
+    implementation 'org.apache.flink:flink-core:1.11.0'
+
+}
